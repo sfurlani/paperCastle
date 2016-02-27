@@ -1,6 +1,5 @@
 import PIXI from 'pixi.js';
 import RendererStore from '../../stores/RendererStore.js';
-import { RESIZE } from '../../constants/AppConstants.js';
 
 // default target size
 let tw = 1920;
@@ -48,6 +47,7 @@ export default class ScaledContainer extends PIXI.Container {
     let scale = new PIXI.Point(scaleRatio, scaleRatio);
     let offsetX = (rw / 2) - (tw*scaleRatio / 2);
     let offsetY = (rh / 2) - (th*scaleRatio / 2);
+
 
     if(th*scaleRatio < rh) {
       scaleRatio = Yratio;

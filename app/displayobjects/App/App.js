@@ -14,7 +14,7 @@ import RendererStore from '../../stores/RendererStore.js';
 export default class App extends ScaledContainer {
 
   constructor(...args) {
-    var bg = new Background();
+    let bg = new Background();
 
     super(...args);
 

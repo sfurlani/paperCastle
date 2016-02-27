@@ -12,7 +12,7 @@ export default class Background extends PIXI.Container {
   constructor() {
     super();
 
-    var bg = PIXI.Sprite.fromImage(TEXTURE);
+    let bg = PIXI.Sprite.fromImage(TEXTURE);
 
     this.addChild(bg);
   }
