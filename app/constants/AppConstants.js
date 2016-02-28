@@ -29,13 +29,13 @@ export const THEME = {
     highlight:  constants.COLORS.base02,
     subtext:    constants.COLORS.base01,
     body:       constants.COLORS.base0,
-    empphasis:  constants.COLORS.base1
+    emphasis:  constants.COLORS.base1
   },
   light: {
     background: constants.COLORS.base3,
     highlight:  constants.COLORS.base2,
     subtext:    constants.COLORS.base1,
     body:       constants.COLORS.base00,
-    empphasis:  constants.COLORS.base01
+    emphasis:  constants.COLORS.base01
   }
 }

@@ -5,8 +5,8 @@
   "description": "Pixi.js project seed / boiler-plate with ES6 and Webpack",
   "config": {
     "buildDir": "./build",
-    "stageWidth": 1920,
-    "stageHeight": 1080
+    "stageWidth": 1024,
+    "stageHeight": 768
   },
   "scripts": {
     "prestart": "npm install",
