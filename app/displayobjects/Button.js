@@ -18,14 +18,14 @@ export default class Button extends PIXI.Container {
 
     let br = new PIXI.Graphics();
     br.beginFill('black', 0);
-    br.lineStyle(2, THEME.dark.highlight, 1);
+    br.lineStyle(2, THEME.current.highlight, 1);
     br.alpha = 0;
     br.drawRect(1,1,w-2, h-2);
     self.border = br;
     self.addChild(br);
 
     let bg = new PIXI.Graphics();
-    bg.beginFill(THEME.dark.highlight, 1);
+    bg.beginFill(THEME.current.highlight, 1);
     bg.alpha = 0;
     bg.drawRect(0,0,w, h)
     self.background = bg;
@@ -33,8 +33,8 @@ export default class Button extends PIXI.Container {
 
     let label = new PIXI.Text(text, {
       align: 'center',
-      font:  '24px CourierNew',
-      fill:  THEME.dark.body
+      font:  THEME.font.button,
+      fill:  THEME.current.body
     });
     label.anchor = new PIXI.Point(0.5,0.5);
     label.position = new PIXI.Point(w/2, h/2);

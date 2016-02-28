@@ -18,8 +18,8 @@ export default class IntroScene extends Scene {
 
 
     let label = new PIXI.Text('',{
-      font: '16pt CourierNew',
-      fill: THEME.dark.body,
+      font: THEME.font.text,
+      fill: THEME.current.body,
       align: 'left',
       wordWrap: true,
       wordWrapWidth: self.width * wwp
@@ -32,14 +32,37 @@ export default class IntroScene extends Scene {
     let cont = new Button('Continue', 200, 50);
     cont.position = new PIXI.Point(label.x - cont.width/2, self.height - cont.height/2 - 100);
     cont.visible = false;
+    cont.click = () => {
+      if (self.storyIndex < self.storyText.length) {
+        self.displayNextStory();
+      }
+      else {
+        //
+      }
+    };
     self.continueButton = cont;
     self.addChild(cont);
+
+    this.storyText = [
+      '\tEvery year the Magic College holds a contest to determine who is ready to be admitted as an apprentice.\n\n\tThis year you are finally old enough to partake in the contest and have lined up with many others at the gates to the college',
+      '\tThe contest is different every year and the line seems to be moving unnervingly fast.  The contestants enter one-by-one through the gate and do not come out again.\n\n\tThe sun hasn\'t risen above the treeline and it\'s already your turn.',
+      '\tYou enter through the iron gate and are ushered quickly through a series of halls to a small, unremarkable room.  The room contains a small desk and many shelves of scrolls.  Behind the desk is a short, gnarled woman wearing the robes of an Arch-magi.\n\n\tAs you enter the wizard behind the desk pulls out another scroll seemingly from thin air and places it in front of you.\n\n\t\"Sign here,\" she says, tapping the page with a withered fingernail.',
+      '\tYou examine the scroll but are are unable to read its contents, as they\'re written in a language you\'ve never seen before.\n\n\tYou hesitate briefly before picking up the quill.  After all, if you want to be a wizard, this is the only way, right?',
+      '\tThe wizard \"harumphs\" as you write your name and no sooner has the ink dried then the room begins to spin and your vision flashes with bright colors.\n\n\tYou slump forward into the desk and fall unconscious.',
+      '\tThe wizard picks up the scroll and places it in the stack with the rest.\n\n\t\"Next...\" she mutters to a seemingly empty room.'
+    ];
+    this.storyIndex = 0;
   }
 
   didShow() {
+    this.displayNextStory();
+  }
+
+  displayNextStory() {
     let self = this;
-    let storyText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at tincidunt tortor, scelerisque viverra felis. Donec eleifend nec ligula vitae tincidunt. Cras tempus turpis lacus, eget semper nibh finibus in. Vestibulum a metus ut risus imperdiet suscipit non sit amet mauris. Proin feugiat posuere orci, et suscipit felis porta a. Nulla tempus risus est, eget tristique turpis semper et. Aliquam posuere nunc at purus vehicula, a sagittis purus tincidunt. Curabitur eu nulla sapien. Nullam lectus dolor, consectetur vitae tortor et, convallis vestibulum augue. Morbi vehicula quis ante sed imperdiet. Sed vitae congue quam.\n\nSed facilisis varius maximus. Cras blandit malesuada suscipit. Vivamus placerat justo egestas risus interdum, non malesuada nisl pretium. Fusce elementum justo vel ante tincidunt, a dapibus libero malesuada. Nullam turpis augue, tincidunt at rutrum eget, varius ac ligula. Aliquam nisl ipsum, gravida nec aliquet nec, pharetra ut justo. Curabitur pretium, mi vestibulum convallis elementum, massa magna accumsan mi, a rhoncus urna odio ut turpis. Nam tristique vitae enim et pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec nisi risus, aliquam sit amet metus varius, lacinia faucibus odio. Proin eget eros sit amet metus suscipit scelerisque. Nullam vitae dolor vel dui gravida vestibulum. Proin sed tempus diam, id vehicula sem.';
-    self.label.text = storyText;
+    if (self.storyIndex >= self.storyText.length) { return; }
+
+    self.label.text = self.storyText[self.storyIndex];
     self.label.updateText();
 
     let cont = self.continueButton;
@@ -48,7 +71,10 @@ export default class IntroScene extends Scene {
     cont.visible = true;
     let contFade = new Tween(cont)
       .to({alpha: 1}, 200)
-      .onComplete(() => cont.interactive=true );
+      .onComplete(() => {
+        self.storyIndex += 1;
+        cont.interactive=true;
+      });
 
     window.setTimeout( () => contFade.start(), 1000 );
   }

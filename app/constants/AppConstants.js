@@ -22,7 +22,7 @@ export const constants = {
   }
 }
 
-export const THEME = {
+const themes = {
   // Solarized Colors: http://ethanschoonover.com/solarized#features
   dark: {
     background: constants.COLORS.base03,
@@ -37,5 +37,16 @@ export const THEME = {
     subtext:    constants.COLORS.base1,
     body:       constants.COLORS.base00,
     emphasis:  constants.COLORS.base01
+  },
+  font: {
+    title: 'bold 100pt Trebuchet MS',
+    header: '32pt Trebuchet MS',
+    button: '24pt Trebuchet MS',
+    text: '14pt Trebuchet MS',
+    subtext: 'italic 12pt Trebuchet MS'
   }
 }
+
+themes.current = themes.dark;
+
+export const THEME = themes;

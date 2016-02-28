@@ -12,16 +12,10 @@ export default class TitleScene extends Scene {
     super(...args);
     let self = this;
 
-    let bg = new PIXI.Graphics();
-    bg.beginFill(THEME.dark.background,1);
-    bg.drawRect(0,0,self.width, self.height);
-    self.background = bg;
-    self.addChild(bg);
-
     let title = new PIXI.Text('Paper Castle',{
       align: 'center',
-      font:  '144px CourierNew',
-      fill:  THEME.dark.body
+      font:  THEME.font.title,
+      fill:  THEME.current.body
     });
     title.anchor = new PIXI.Point(0.5, 0.5);
     title.position = RendererStore.get('stageCenter');

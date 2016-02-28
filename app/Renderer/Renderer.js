@@ -20,7 +20,7 @@ export default class Renderer extends PIXI.WebGLRenderer {
     super(...args);
 
     this.resolution = window.devicePixelRatio;
-    this.backgroundColor = THEME.dark.background;
+    this.backgroundColor = THEME.current.background;
 
     window.addEventListener('resize', this.resizeHandler.bind(this));
 
