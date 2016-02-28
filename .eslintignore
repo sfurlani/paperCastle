@@ -1,0 +1,14 @@
+# /node_modules and /bower_components ignored by default
+
+# Ignore files compiled from TypeScript and CoffeeScript
+**/*.{ts,coffee}.js
+
+# Ignore built files
+build/
+
+# Ignore Webpack
+webpack*
+
+# Ignore NPM
+node_modules/
+package.json

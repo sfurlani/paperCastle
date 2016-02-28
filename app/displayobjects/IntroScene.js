@@ -1,9 +1,11 @@
+/* eslint-disable */
 import PIXI from 'pixi.js';
 import Scene from './Scene.js';
 import Button from './Button.js';
 import { THEME } from '../constants/AppConstants.js';
 import RendererStore from '../stores/RendererStore.js';
 import { Tween } from 'tween.js';
+/* eslint-enable */
 
 export default class IntroScene extends Scene {
 
@@ -28,7 +30,7 @@ export default class IntroScene extends Scene {
     self.addChild(label);
 
     let cont = new Button('Continue', 200, 50);
-    cont.position = new PIXI.Point(label.x - cont.width/2, this.height - cont.height/2 - 100);
+    cont.position = new PIXI.Point(label.x - cont.width/2, self.height - cont.height/2 - 100);
     cont.visible = false;
     self.continueButton = cont;
     self.addChild(cont);
