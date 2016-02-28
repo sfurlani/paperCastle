@@ -2,7 +2,7 @@ import PIXI from 'pixi.js';
 import Scene from './Scene.js';
 import Button from './Button.js';
 import IntroScene from './IntroScene.js';
-import { THEME } from '../constants/AppConstants.js';
+import { theme } from '../constants/AppConstants.js';
 import RendererStore from '../stores/RendererStore.js';
 import { Tween } from 'tween.js';
 
@@ -14,9 +14,10 @@ export default class TitleScene extends Scene {
 
     let title = new PIXI.Text('Paper Castle',{
       align: 'center',
-      font:  THEME.font.title,
-      fill:  THEME.current.body
+      font:  theme.font.title,
+      fill:  'white'
     });
+    title.tint = theme.current.body;
     title.anchor = new PIXI.Point(0.5, 0.5);
     title.position = RendererStore.get('stageCenter');
     title.visible = false;
@@ -26,6 +27,7 @@ export default class TitleScene extends Scene {
     let btnH = 50;
     let btnY = title.y + btnH*3;
     let start = new Button('New Game', 200, btnH);
+
     start.position = new PIXI.Point(title.x - start.width/2, btnY - start.height/2);
     start.visible = false;
 
@@ -43,6 +45,8 @@ export default class TitleScene extends Scene {
     cont.visible = false;
     self.continueButton = cont;
     self.addChild(cont);
+
+    this.debugPalette();
   }
 
   didShow() {
@@ -75,5 +79,46 @@ export default class TitleScene extends Scene {
       });
 
     window.setTimeout( () => titleFade.start(), 500 );
+  }
+
+  debugPalette() {
+    let self = this;
+    // DEBUG - testing color palette
+    let bg = new PIXI.Graphics();
+    bg.beginFill(theme.dark.background,1);
+    bg.drawRect(10,10,200,200);
+    bg.endFill();
+
+    let colors = [
+      theme.red,
+      theme.orange,
+      theme.yellow,
+      theme.green,
+      theme.jade,
+      theme.cyan,
+      theme.blue,
+      theme.violet,
+      theme.magenta,
+      theme.black,
+      theme.gray,
+      theme.white,
+      theme.dark.highlight,
+      theme.dark.subtext,
+      theme.dark.body,
+      theme.dark.emphasis
+    ];
+    let index = 0;
+    const incr = 30;
+    for (let x = incr/2; x < (200-incr); x += incr*1.5) {
+      for (let y = incr/2; y < (200-incr); y += incr*1.5) {
+        if (index >= colors.length) { continue; } // guard
+        bg.beginFill(colors[index],1);
+        bg.drawRect(x+10,y+10,incr, incr);
+        bg.endFill();
+        index += 1;
+      }
+    }
+
+    self.addChild(bg);
   }
 }

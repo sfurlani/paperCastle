@@ -2,7 +2,7 @@
 import PIXI from 'pixi.js';
 import Scene from './Scene.js';
 import Button from './Button.js';
-import { THEME } from '../constants/AppConstants.js';
+import { theme } from '../constants/AppConstants.js';
 import RendererStore from '../stores/RendererStore.js';
 import { Tween } from 'tween.js';
 /* eslint-enable */
@@ -18,8 +18,8 @@ export default class IntroScene extends Scene {
 
 
     let label = new PIXI.Text('',{
-      font: THEME.font.text,
-      fill: THEME.current.body,
+      font: theme.font.text,
+      fill: theme.current.body,
       align: 'left',
       wordWrap: true,
       wordWrapWidth: self.width * wwp

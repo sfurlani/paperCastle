@@ -1,7 +1,7 @@
 import PIXI from 'pixi.js';
 import RendererStore from '../stores/RendererStore';
 import AnimationStore from '../stores/AnimationStore';
-import { THEME } from '../constants/AppConstants';
+import { theme } from '../constants/AppConstants';
 
 let renderables = new Set();
 
@@ -20,7 +20,7 @@ export default class Renderer extends PIXI.WebGLRenderer {
     super(...args);
 
     this.resolution = window.devicePixelRatio;
-    this.backgroundColor = THEME.current.background;
+    this.backgroundColor = theme.current.background;
 
     window.addEventListener('resize', this.resizeHandler.bind(this));
 
