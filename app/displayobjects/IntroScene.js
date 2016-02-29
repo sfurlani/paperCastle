@@ -1,6 +1,7 @@
 /* eslint-disable */
 import PIXI from 'pixi.js';
 import Scene from './Scene.js';
+import GameScene from './GameScene.js';
 import Button from './Button.js';
 import { theme } from '../constants/AppConstants.js';
 import RendererStore from '../stores/RendererStore.js';
@@ -37,7 +38,8 @@ export default class IntroScene extends Scene {
         self.displayNextStory();
       }
       else {
-        //
+        let game = new GameScene();
+        this.stage.showScene(game);
       }
     };
     self.continueButton = cont;

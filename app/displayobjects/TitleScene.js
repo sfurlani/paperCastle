@@ -1,10 +1,13 @@
+/* eslint-disable */
 import PIXI from 'pixi.js';
 import Scene from './Scene.js';
-import Button from './Button.js';
+import GameScene from './GameScene.js';
 import IntroScene from './IntroScene.js';
+import Button from './Button.js';
 import { theme } from '../constants/AppConstants.js';
 import RendererStore from '../stores/RendererStore.js';
 import { Tween } from 'tween.js';
+/* eslint-enable */
 
 export default class TitleScene extends Scene {
 
@@ -67,6 +70,10 @@ export default class TitleScene extends Scene {
     let contFade = new Tween(cont)
       .to({alpha: 1}, 200)
       .onComplete(() => cont.interactive=true );
+    cont.click = () => {
+      let game = new GameScene();
+      this.stage.showScene(game);
+    };
 
     let title = self.title;
     title.alpha = 0;
