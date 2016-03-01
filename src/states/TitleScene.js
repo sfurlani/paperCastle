@@ -1,15 +1,9 @@
 /* eslint-disable */
-import PIXI from 'pixi.js';
-import Scene from './Scene.js';
-import GameScene from './GameScene.js';
-import IntroScene from './IntroScene.js';
-import Button from './Button.js';
-import { theme } from '../constants/AppConstants.js';
-import RendererStore from '../stores/RendererStore.js';
-import { Tween } from 'tween.js';
+import Phaser from 'pixi.js';
+import { theme } from '../data/Constants.js';
 /* eslint-enable */
 
-export default class TitleScene extends Scene {
+export default class Title extends Phaser.State {
 
   constructor(...args) {
     super(...args);
@@ -92,9 +86,9 @@ export default class TitleScene extends Scene {
     let self = this;
     // DEBUG - testing color palette
     let bg = new PIXI.Graphics();
-    bg.beginFill(theme.dark.background,1);
-    bg.drawRect(10,10,200,200);
-    bg.endFill();
+    //bg.beginFill(theme.dark.background,1);
+    //bg.drawRect(10,10,200,200);
+    //bg.endFill();
 
     let colors = [
       theme.red,
