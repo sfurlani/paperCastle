@@ -1,8 +1,9 @@
 {
-  "name": "PPS1",
+  "name": "Paper Castle",
   "version": "0.0.1",
   "description": "Initial Commit for the ",
-  "author": "leandro cabrera <leandcabrera@gmail.com>",
+  "author": "Stephen Furlani <sfurlani@github.com>",
+  "repository": "https://github.com/sfurlani/paperCastle",
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
@@ -30,7 +31,8 @@
       "dist",
       "lib",
       "webpack*",
-      "build"
+      "build",
+      "node_module"
     ]
   }
 }
