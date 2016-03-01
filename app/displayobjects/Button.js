@@ -27,7 +27,7 @@ export default class Button extends PIXI.Container {
     let bg = new PIXI.Graphics();
     bg.beginFill(theme.current.highlight, 1);
     bg.alpha = 0;
-    bg.drawRect(0,0,w, h)
+    bg.drawRect(0,0,w, h);
     self.background = bg;
     self.addChild(bg);
 

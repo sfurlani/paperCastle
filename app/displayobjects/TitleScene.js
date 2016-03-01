@@ -92,9 +92,9 @@ export default class TitleScene extends Scene {
     let self = this;
     // DEBUG - testing color palette
     let bg = new PIXI.Graphics();
-    bg.beginFill(theme.dark.background,1);
-    bg.drawRect(10,10,200,200);
-    bg.endFill();
+    //bg.beginFill(theme.dark.background,1);
+    //bg.drawRect(10,10,200,200);
+    //bg.endFill();
 
     let colors = [
       theme.red,
