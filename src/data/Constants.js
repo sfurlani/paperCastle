@@ -1,5 +1,4 @@
-
-
+// Base colors (darks and greys)
 const baseColors = {
   // Solarized Colors: http://ethanschoonover.com/solarized#features
   base03:    0x002b36,
@@ -12,6 +11,7 @@ const baseColors = {
   base3:     0xfdf6e3
 };
 
+// 
 const themes = {
   black:     0x01161B,
   gray:      0x475B62,
@@ -59,7 +59,5 @@ themes.current = themes.dark;
 export const theme = themes;
 
 export const constants = {
-  RESIZE:  'APP_RESIZE',
-  ANIMATE: 'APP_ANIMATE',
   theme: themes
 };
