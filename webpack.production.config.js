@@ -31,17 +31,14 @@ module.exports = {
   module: {
     loaders: [
 
-      {
-        test: /\.json$/,
-        loader: 'json'
-      },
+      { test: /\.json$/, loader: 'json' },
+      { test: /\.html$/, exclude: /node_modules/, loader: 'file-loader?name=[path][name].[ext]'},
+      { test: /\.jpe?g$|\.svg$|\.png$/, exclude: /node_modules/, loader: 'file-loader?name=[path][name].[ext]'},
       {
         test: /\.js$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
-      },
-      { test: /\.html$/, exclude: /node_modules/, loader: 'file-loader?name=[path][name].[ext]'},
-      { test: /\.jpe?g$|\.svg$|\.png$/, exclude: /node_modules/, loader: 'file-loader?name=[path][name].[ext]'}
+      }
     ]
   },
   node: {

@@ -19,4 +19,4 @@ class Game extends Phaser.Game {
 
 }
 
-export default new Game()
+new Game()

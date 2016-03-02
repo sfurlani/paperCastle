@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Base colors (darks and greys)
 const baseColors = {
   // Solarized Colors: http://ethanschoonover.com/solarized#features
@@ -11,7 +13,7 @@ const baseColors = {
   base3:     0xfdf6e3
 };
 
-// 
+// Theme Colors
 const themes = {
   black:     0x01161B,
   gray:      0x475B62,

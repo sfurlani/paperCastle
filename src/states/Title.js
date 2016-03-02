@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Phaser from 'pixi.js';
+import Phaser from 'phaser';
 import { theme } from '../data/Constants.js';
 /* eslint-enable */
 
-export default class Title extends Phaser.State {
+export default class extends Phaser.State {
 
   constructor(...args) {
     super(...args);

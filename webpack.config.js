@@ -27,21 +27,21 @@ module.exports = {
       port: process.env.PORT || 3000,
       open: false,
       server: {
-        baseDir: ['./', './build']
+        baseDir: ['./', './dist', './lib']
       }
     }),
 
   ],
   module: {
     loaders: [
+      { test: /\.html$/, exclude: /node_modules/, loader: 'file-loader?name=[path][name].[ext]'},
+      { test: /\.jpe?g$|\.svg$|\.png$/, exclude: /node_modules/, loader: 'file-loader?name=[path][name].[ext]'},
+      { test: /\.json$/, exclude: /node_modules/, loader: 'json'},
       {
         test: /\.js$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
-      },
-      { test: /\.html$/, exclude: /node_modules/, loader: 'file-loader?name=[path][name].[ext]'},
-      { test: /\.jpe?g$|\.svg$|\.png$/, exclude: /node_modules/, loader: 'file-loader?name=[path][name].[ext]'},
-      { test: /\.json$/, exclude: /node_modules/, loader: 'json'},
+      }
     ]
   },
   node: {
