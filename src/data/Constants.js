@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 // Base colors (darks and greys)
-const baseColors = {
+const base = {
   // Solarized Colors: http://ethanschoonover.com/solarized#features
   base03:    0x002b36,
   base02:    0x073642,
@@ -14,7 +14,7 @@ const baseColors = {
 };
 
 // Theme Colors
-const themes = {
+export const colors = {
   black:     0x01161B,
   gray:      0x475B62,
   // yellow:    0xb58900,
@@ -28,38 +28,39 @@ const themes = {
   yellow:      0xD19607, // gold
   // sky:       0x2C99D3,
   jade:      0x3BA74D,
-  white:     baseColors.base3,
+  white:     base.base3,
+}
 
-
-
+const themes = {
   // Solarized Colors: http://ethanschoonover.com/solarized#features
   dark: {
-    background: baseColors.base03,
-    highlight:  baseColors.base02,
-    subtext:    baseColors.base01,
-    body:       baseColors.base0,
-    emphasis:   baseColors.base1
+    background: base.base03,
+    highlight:  base.base02,
+    subtext:    base.base01,
+    body:       base.base0,
+    emphasis:   base.base1
   },
+
   light: {
-    background: baseColors.base3,
-    highlight:  baseColors.base2,
-    subtext:    baseColors.base1,
-    body:       baseColors.base00,
-    emphasis:   baseColors.base01
+    background: base.base3,
+    highlight:  base.base2,
+    subtext:    base.base1,
+    body:       base.base00,
+    emphasis:   base.base01
   },
-  font: {
-    title: 'bold 100pt Trebuchet MS',
-    header: '32pt Trebuchet MS',
-    button: '24pt Trebuchet MS',
-    text: '14pt Trebuchet MS',
-    subtext: 'italic 12pt Trebuchet MS'
+};
+export const theme = themes.dark;
+
+export const fonts = {
+  name: {
+    title: 'UnifrakturMaguntia',
+    text: 'Cinzel Decorative'
+  },
+  size: {
+    title: 180,
+    header: 32,
+    button: 24,
+    text: 14,
+    subtext: 12
   }
-};
-
-themes.current = themes.dark;
-
-export const theme = themes;
-
-export const constants = {
-  theme: themes
-};
+}

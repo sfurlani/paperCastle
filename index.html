@@ -2,34 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Paper Castle v0.0.1</title>
+  <meta charset="UTF-8">
+  <title>Paper Castle v0.0.1</title>
 
-    <!-- https://github.com/h5bp/mobile-boilerplate/wiki/The-Markup -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta http-equiv="cleartype" content="on">
+  <!-- https://github.com/h5bp/mobile-boilerplate/wiki/The-Markup -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta http-equiv="cleartype" content="on">
 
-    <!--<script src="lib/phaser.min.js"></script>-->
-    <script src="lib/phaser.js"></script>
-    <script src="dist/bundle.js"></script>
+  <!--<script src="lib/phaser.min.js"></script>-->
+  <script src="lib/phaser.js"></script>
+  <script src="dist/bundle.js"></script>
 
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #002b36;
+    }
 
-        #content {
-
-        }
-    </style>
+    canvas {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      image-rendering: crisp-edges;
+    }
+  </style>
 </head>
 
-<body style="backgroundColor:#002b36">
-        <div id="content"></div>
+<body>
+  <div id="content"></div>
 </body>
 
 </html>

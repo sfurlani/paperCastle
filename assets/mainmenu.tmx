@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="13">
  <objectgroup name="buttons">
-  <object id="6" name="newGame" type="button" x="384" y="384" width="320" height="32">
+  <object id="6" name="newGame" type="button" x="352" y="576" width="320" height="64">
    <properties>
-    <property name="callback" value=""/>
-    <property name="text" value=""/>
-   </properties>
-  </object>
-  <object id="7" name="continue" type="button" x="384" y="448" width="320" height="32">
-   <properties>
-    <property name="callback" value=""/>
-    <property name="text" value=""/>
-   </properties>
-  </object>
-  <object id="8" name="popupTest" type="button" x="384" y="512" width="320" height="32">
-   <properties>
-    <property name="callback" value=""/>
-    <property name="text" value=""/>
+    <property name="font" value=""/>
+    <property name="key" value=""/>
+    <property name="size" value="24pt"/>
+    <property name="text" value="New Game"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="labels">
-  <object id="9" name="title" type="label" x="160" y="136" width="736" height="112">
+  <object id="9" name="title" type="label" x="32" y="96" width="960" height="352">
    <properties>
     <property name="font" value=""/>
-    <property name="size" value=""/>
-    <property name="text" value=""/>
+    <property name="size" value="180pt"/>
+    <property name="text" value="Paper Castle"/>
    </properties>
   </object>
  </objectgroup>

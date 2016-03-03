@@ -4,7 +4,7 @@ import { theme } from '../data/Constants.js'
 
 export default class extends Phaser.State {
   init () {
-    this.stage.backgroundColor = theme.current.background
+    this.stage.backgroundColor = theme.background
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
   }
@@ -12,36 +12,20 @@ export default class extends Phaser.State {
   preload () {
     WebFont.load({
       google: {
-        families: ['Architects Daughter', 'Cutive Mono', 'Patrick Hand', 'Gloria Hallelujah']
+        families: ['Cinzel Decorative', 'UnifrakturMaguntia']
       },
       active: this.fontsLoaded
     })
 
-    let text = this.add.text(this.world.centerX, this.world.centerY, 'loading fonts', { font: '16px Arial', fill: theme.current.body, align: 'center' })
+    let text = this.add.text(this.world.centerX, this.world.centerY, 'loading fonts', { font: '16px Arial', fill: theme.body, align: 'center' })
     text.anchor.setTo(0.5, 0.5)
 
     this.load.image('loaderBg', './assets/images/loader-bg.png')
     this.load.image('loaderBar', './assets/images/loader-bar.png')
 
-    // Make sure this has no ties to the boot object
-    let scaleManager = this.game.scale
-    let game = this.game
-    let resize = () => {
-      let scale = Math.min(window.innerWidth / game.width, window.innerHeight / game.height)
-      scaleManager.setUserScale(scale, scale, 0, 0)
-      scaleManager.pageAlignHorizontally = true
-      scaleManager.pageAlignVertically = true
-      scaleManager.refresh()
-    }
 
-    scaleManager.scaleMode = Phaser.ScaleManager.USER_SCALE
-    scaleManager.minHeight = 660
-    scaleManager.minWidth = 880
-    scaleManager.setResizeCallback(resize, scaleManager)
-    scaleManager.pageAlignHorizontally = true
-    scaleManager.compatibility.forceMinimumDocumentHeight = true
-    scaleManager.pageAlignVertically = true
-    scaleManager.refresh()
+    this.setupScaleManager(this.game)
+
   }
 
   render () {
@@ -52,6 +36,25 @@ export default class extends Phaser.State {
 
   fontsLoaded () {
     this.fontsReady = true
+  }
+
+  setupScaleManager (game) {
+    let scaleManager = game.scale
+    let resize = () => {
+      // Make sure these variable have no ties to the boot object
+      let scale = Math.min(window.innerWidth / game.width, window.innerHeight / game.height)
+      let offsetY = (window.innerWidth - game.width) / 2
+      scaleManager.setUserScale(scale, scale, 0, 0)
+      scaleManager.refresh()
+    }
+
+    scaleManager.scaleMode = Phaser.ScaleManager.USER_SCALE
+    scaleManager.minHeight = 240
+    scaleManager.minWidth = 320
+    scaleManager.pageAlignHorizontally = true
+    scaleManager.pageAlignVertically = true
+    scaleManager.setResizeCallback(resize, this)
+    scaleManager.refresh()
   }
 
 }
