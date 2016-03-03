@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="13">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="15">
  <objectgroup name="buttons">
-  <object id="6" name="newGame" type="button" x="352" y="576" width="320" height="64">
+  <object id="6" name="newGame" type="button" x="352" y="544" width="320" height="64">
    <properties>
     <property name="font" value=""/>
     <property name="key" value=""/>
@@ -9,9 +9,25 @@
     <property name="text" value="New Game"/>
    </properties>
   </object>
+  <object id="13" name="continue" type="button" x="352" y="640" width="320" height="64">
+   <properties>
+    <property name="font" value=""/>
+    <property name="key" value="continue"/>
+    <property name="size" value="24pt"/>
+    <property name="text" value="Continue"/>
+   </properties>
+  </object>
+  <object id="14" name="about" type="button" x="864" y="32" width="128" height="64">
+   <properties>
+    <property name="font" value=""/>
+    <property name="key" value="about"/>
+    <property name="size" value="12pt"/>
+    <property name="text" value="About"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="labels">
-  <object id="9" name="title" type="label" x="32" y="96" width="960" height="352">
+  <object id="9" name="title" type="label" x="32" y="192" width="960" height="256">
    <properties>
     <property name="font" value=""/>
     <property name="size" value="180pt"/>

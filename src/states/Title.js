@@ -8,7 +8,7 @@ export default class GameState extends Phaser.State {
   preload () {}
 
   create () {
-    this.map = this.game.add.tilemap('mainmenu')
+    this.map = this.add.tilemap('mainmenu')
 
     let banner = this.add.text(this.game.world.centerX, this.game.world.centerY, 'Paper Castle')
     banner.font = fonts.name.title
@@ -22,9 +22,12 @@ export default class GameState extends Phaser.State {
     for (let btn of btns) {
       console.log(btn)
       let button = new Button(this.game, btn)
-      button && this.game.add.existing(button)
+      button && this.add.existing(button)
       console.log(button)
+      this[btn.name] = button
     }
+
+    this.continue.setEnabled(false)
 
     this.paletteDebug()
   }

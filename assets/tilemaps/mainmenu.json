@@ -21,7 +21,43 @@
                  "visible":true,
                  "width":320,
                  "x":352,
-                 "y":576
+                 "y":544
+                }, 
+                {
+                 "height":64,
+                 "id":13,
+                 "name":"continue",
+                 "properties":
+                    {
+                     "font":"",
+                     "key":"continue",
+                     "size":"24pt",
+                     "text":"Continue"
+                    },
+                 "rotation":0,
+                 "type":"button",
+                 "visible":true,
+                 "width":320,
+                 "x":352,
+                 "y":640
+                }, 
+                {
+                 "height":48,
+                 "id":14,
+                 "name":"about",
+                 "properties":
+                    {
+                     "font":"",
+                     "key":"about",
+                     "size":"12pt",
+                     "text":"About"
+                    },
+                 "rotation":0,
+                 "type":"button",
+                 "visible":true,
+                 "width":96,
+                 "x":896,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -36,7 +72,7 @@
          "name":"labels",
          "objects":[
                 {
-                 "height":352,
+                 "height":256,
                  "id":9,
                  "name":"title",
                  "properties":
@@ -50,7 +86,7 @@
                  "visible":true,
                  "width":960,
                  "x":32,
-                 "y":96
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -59,7 +95,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":13,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "properties":
     {

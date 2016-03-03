@@ -14,15 +14,29 @@ export default class Button extends Phaser.Graphics {
     this.hitArea = frame;
 
     let label = new Label(game, {x, y, width, height, properties: { text, font, size }})
+    this.label = label;
     this.addChild(label)
 
     this.inputEnabled = true
     this.input.useHandCursor = true
-    
+
     this.events.onInputUp.add(this.onInputUp, this)
     this.events.onInputDown.add(this.onInputDown, this)
     this.events.onInputOver.add(this.onInputOver, this)
     this.events.onInputOut.add(this.onInputOut, this)
+
+    var enabled = true;
+
+    this.setEnabled = (value) => {
+      enabled = value
+
+      this.label.tint = enabled ? theme.body : theme.subtext
+      this.inputEnabled = enabled
+    }
+
+    this.isEnabled = () => {
+      return enabled
+    }
 
   }
 
