@@ -54,7 +54,8 @@ export const theme = themes.dark;
 export const fonts = {
   name: {
     title: 'UnifrakturMaguntia',
-    text: 'Cinzel Decorative'
+    text: 'Courier New',
+    fancy: 'Cinzel Decorative'
   },
   size: {
     title: 180,

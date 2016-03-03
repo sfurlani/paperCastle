@@ -29,7 +29,7 @@ export default class GameState extends Phaser.State {
 
     this.continue.setEnabled(false)
 
-    this.paletteDebug()
+    // this.paletteDebug()
   }
 
   paletteDebug () {
