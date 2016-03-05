@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="7" height="7" tilewidth="32" tileheight="32" nextobjectid="5">
+ <tileset firstgid="1" name="rooms" tilewidth="32" tileheight="32" tilecount="11" columns="0">
+  <tile id="0">
+   <properties>
+    <property name="east" value="1"/>
+    <property name="north" value="1"/>
+    <property name="south" value="1"/>
+    <property name="type" value="room"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/r4.png"/>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="east" value=""/>
+    <property name="north" value="1"/>
+    <property name="south" value="1"/>
+    <property name="type" value="room"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/r3.png"/>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="east" value="1"/>
+    <property name="north" value=""/>
+    <property name="south" value=""/>
+    <property name="type" value="room"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/r2s.png"/>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="east" value=""/>
+    <property name="north" value=""/>
+    <property name="south" value="1"/>
+    <property name="type" value="room"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/r2r.png"/>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="east" value=""/>
+    <property name="north" value=""/>
+    <property name="south" value=""/>
+    <property name="type" value="room"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/r1.png"/>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="east" value=""/>
+    <property name="north" value=""/>
+    <property name="south" value=""/>
+    <property name="type" value="empty"/>
+    <property name="west" value=""/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/e.png"/>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="east" value="1"/>
+    <property name="north" value="1"/>
+    <property name="south" value="1"/>
+    <property name="type" value="corridor"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/c4.png"/>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="east" value=""/>
+    <property name="north" value="1"/>
+    <property name="south" value="1"/>
+    <property name="type" value="corridor"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/c3.png"/>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="east" value="1"/>
+    <property name="north" value=""/>
+    <property name="south" value=""/>
+    <property name="type" value="corridor"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/c2s.png"/>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="east" value=""/>
+    <property name="north" value=""/>
+    <property name="south" value="1"/>
+    <property name="type" value="corridor"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/c2r.png"/>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="east" value=""/>
+    <property name="north" value=""/>
+    <property name="south" value=""/>
+    <property name="type" value="corridor"/>
+    <property name="west" value="1"/>
+   </properties>
+   <image width="32" height="32" source="../../assets/images/c1.png"/>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="7" height="7">
+  <properties>
+   <property name="endX" value=""/>
+   <property name="endY" value=""/>
+   <property name="startX" value=""/>
+   <property name="startY" value=""/>
+  </properties>
+  <data encoding="csv">
+1610612741,6,6,6,1610612746,3,10,
+3221225480,3,9,1610612744,8,6,2684354569,
+2684354569,1610612740,3,8,3221225476,9,8,
+2684354569,3221225480,9,8,6,6,2684354569,
+3221225482,1,9,2684354568,9,3,2684354564,
+3221225477,7,3,1610612744,3,10,6,
+6,2684354565,6,2684354565,3221225477,2684354570,6
+</data>
+ </layer>
+</map>

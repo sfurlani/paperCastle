@@ -20,11 +20,14 @@ export default class GameState extends Phaser.State {
 
     let btns = this.map.objects.buttons
     for (let btn of btns) {
-      console.log(btn)
       let button = new Button(this.game, btn)
       button && this.add.existing(button)
-      console.log(button)
       this[btn.name] = button
+    }
+
+    let self = this
+    this.newGame.callback = (event, button, key) => {
+      this.game.state.start('Map')
     }
 
     this.continue.setEnabled(false)

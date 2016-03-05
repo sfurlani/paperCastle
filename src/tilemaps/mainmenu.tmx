@@ -17,7 +17,7 @@
     <property name="text" value="Continue"/>
    </properties>
   </object>
-  <object id="14" name="about" type="button" x="864" y="32" width="128" height="64">
+  <object id="14" name="about" type="button" x="896" y="32" width="96" height="48">
    <properties>
     <property name="font" value=""/>
     <property name="key" value="about"/>

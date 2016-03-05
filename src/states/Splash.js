@@ -11,9 +11,12 @@ export default class extends Phaser.State {
 
     this.load.setPreloadSprite(this.loaderBar)
     this.load.tilemap('mainmenu', 'assets/tilemaps/mainmenu.json', null, Phaser.Tilemap.TILED_JSON)
-    //
-    // load your assets
-    //
+    this.load.tilemap('level001', 'assets/tilemaps/level001.json', null, Phaser.Tilemap.TILED_JSON)
+    this.load.json('test', 'assets/tilemaps/level001.json')
+    let images = ['e', 'c1', 'c2s', 'c2r', 'c3', 'c4', 'r1', 'r2s', 'r2r', 'r3', 'r4']
+    for (let key of images) {
+      this.load.image(key, 'assets/images/' + key + '.png')
+    }
 
   }
 
