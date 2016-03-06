@@ -13,7 +13,7 @@ export const getRandomInt = (min, max) => {
 }
 
 export const getRandomItem = (array) => {
-  let index = getRandomInt(array.length)
+  let index = getRandomInt(0, array.length-1)
   return array[index]
 }
 

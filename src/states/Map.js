@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import { colors } from '../data/Constants'
+import { generateDungeon, Dungeon, Room, Corridor, Feature } from '../data/Dungeon'
 
 const getFilename = (path) => {
     return path.split('\\').pop().split('/').pop()
@@ -17,10 +18,8 @@ export default class MapState extends Phaser.State {
     // console.log(json)
     // let map = Phaser.TilemapParser.parseTiledJSON(json.data)
     // console.log(map)
+    //
 
-    let map = this.game.add.tilemap('level001')
-    this.map = map;
-    console.log(map)
   }
 
   preload() {
@@ -28,6 +27,57 @@ export default class MapState extends Phaser.State {
   }
 
   create() {
+    let self = this
+    self.group = self.add.group()
+    self.addDungeon()
+    self.old_create()
+    self.inputEnabled = true
+    self.input.onTap.add(self.addDungeon, self)
+  }
+
+  addDungeon() {
+    this.group.removeAll()
+    let self = this
+    let scale = 3
+    let features = [
+      {count: 1, feature: Room},
+      {count: 5, feature: Corridor }
+    ]
+    let dungeon = generateDungeon({size: 7, features})
+    dungeon.foreach( (value,x,y) => {
+      if (!value) { return }
+      let xPos = (32*x+16)*scale
+      let yPos = (32*y+16)*scale
+      let sprite = new Phaser.Image(self.game, xPos, yPos, value.imageKey)
+      sprite.rotation = value.rotation
+      sprite.anchor.setTo(0.5)
+      sprite.scale = new Phaser.Point(scale,scale)
+      self.group.addChild(sprite)
+
+      if (value.print === 'R') {
+        let label = new Phaser.Text(self.game, xPos, yPos, value.roomNumber)
+        label.anchor.setTo(0.5)
+        self.group.addChild(label)
+      }
+
+
+      // let exits = ''
+      // exits += (value.doors.north) ? 'N' : '_'
+      // exits += (value.doors.east) ? 'E' : '_'
+      // exits += (value.doors.south) ? 'W' : '_'
+      // exits += (value.doors.west) ? 'S' : '_'
+      //
+      // console.log(value.imageKey+": "+sprite.x+","+sprite.y+' '+exits)
+
+    })
+  }
+
+  old_create() {
+
+    let map = this.game.add.tilemap('level001')
+    this.map = map;
+    console.log(map)
+
     let scale = 1
     let minimap = this.add.group()
 
@@ -37,13 +87,13 @@ export default class MapState extends Phaser.State {
       let row = layer.data[r]
       for (let c = 0; c < row.length; c += 1) {
         let tile = row[c]
-        console.log(tile)
+
         let tileprops = this.map.tiles[tile.index]
         let setID = tileprops[2]
         let tilesetprops = this.map.tilesets[setID]
         let imagePath = tilesetprops.tiles[tile.index-1].image
         let imageName = getImageKey(imagePath)
-        console.log(imageName)
+
         tile.imageKey = imageName
         let sprite = new Phaser.Image(this.game, (tile.worldX+tile.centerX)*scale, (tile.worldY+tile.centerY)*scale, imageName)
         sprite.anchor.setTo(0.5)
@@ -60,15 +110,6 @@ export default class MapState extends Phaser.State {
         sprite.tint = colors.white
         tile.sprite = sprite
         minimap.addChild(sprite)
-
-        let exits = ''
-        exits += (tile.properties.north) ? 'N' : '_'
-        exits += (tile.properties.east) ? 'E' : '_'
-        exits += (tile.properties.south) ? 'W' : '_'
-        exits += (tile.properties.west) ? 'S' : '_'
-
-        console.log(''+imageName+' @ '+angle+'\' '+exits)
-
       }
     }
 
