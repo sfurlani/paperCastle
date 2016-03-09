@@ -14,11 +14,6 @@ const getImageKey = (path) => {
 export default class MapState extends Phaser.State {
 
   init() {
-    // let json = this.game.cache.getTilemapData('level001')
-    // console.log(json)
-    // let map = Phaser.TilemapParser.parseTiledJSON(json.data)
-    // console.log(map)
-    //
 
   }
 
@@ -36,14 +31,20 @@ export default class MapState extends Phaser.State {
   }
 
   addDungeon() {
+    // Clear current dungeon
     this.group.removeAll()
+
+    // Setup New Dungeon
     let self = this
     let scale = 3
     let features = [
       {count: 1, feature: Room},
       {count: 5, feature: Corridor }
     ]
+    // Create Dungeon
     let dungeon = generateDungeon({size: 7, features})
+
+    // For each feature, create a Sprite and Optional Label
     dungeon.foreach( (value,x,y) => {
       if (!value) { return }
       let xPos = (32*x+16)*scale
@@ -59,15 +60,6 @@ export default class MapState extends Phaser.State {
         label.anchor.setTo(0.5)
         self.group.addChild(label)
       }
-
-
-      // let exits = ''
-      // exits += (value.doors.north) ? 'N' : '_'
-      // exits += (value.doors.east) ? 'E' : '_'
-      // exits += (value.doors.south) ? 'W' : '_'
-      // exits += (value.doors.west) ? 'S' : '_'
-      //
-      // console.log(value.imageKey+": "+sprite.x+","+sprite.y+' '+exits)
 
     })
   }

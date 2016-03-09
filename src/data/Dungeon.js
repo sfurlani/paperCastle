@@ -22,6 +22,9 @@ Step 8 just loops back to build more rooms. The exact number of times that you w
 
 */
 
+/**
+ * Base Dungeon Feature Class
+ */
 export class Feature {
   constructor(x,y) {
     let props = {
@@ -58,6 +61,8 @@ export class Feature {
 
   get imageKey() {
     if (this._key) { return this._key}
+
+    // Determine ImageKey and sprite rotation based on placement of doors
 
     let doors = this.doors
     let west = doors.west
@@ -136,6 +141,9 @@ export class Feature {
   }
 }
 
+/**
+ * This Subclass for Rooms - considering composition isntead
+ */
 export class Room extends Feature{
   constructor(x,y) {
     super(x,y)
@@ -145,6 +153,9 @@ export class Room extends Feature{
 
 }
 
+/**
+ * This Subclass for Corridors - considering composition isntead
+ */
 export class Corridor extends Feature{
   constructor(x,y) {
     super(x,y)
@@ -153,8 +164,22 @@ export class Corridor extends Feature{
   }
 }
 
+/**
+ * @class FeatureSpec
+ * @property count {number} Relative Odds (i.e. passing in specs with 1, 2, and 7 means that the odds are 1:10, 2:10, 7:10 respectively)
+ * @property feature {type} Feature or SubClass to create
+ */
+
+/**
+ *
+ * @param [size=7] {number}
+ * @param features {FeatureSpec[]}
+ * @returns {Dungeon}
+ */
 export const generateDungeon = ({size, features}) => {
   size = size || 7
+
+  // Step 4 function definition
   features = features || [{count: 1, feature: Room}, {count: 1, feature: Corridor }]
   let nextFeature = () => {
     let total = 0
@@ -169,6 +194,7 @@ export const generateDungeon = ({size, features}) => {
     throw new Error("Shouldn't get here: wrong input: "+features)
   }
   let directions = ['north', 'south', 'east', 'west']
+
   // Step 1: Fill with Solid Earth
   let dungeon = new Dungeon(size)
   console.log(dungeon)
@@ -186,68 +212,64 @@ export const generateDungeon = ({size, features}) => {
     dungeon.set(seed)
   }
 
-  console.log(dungeon.getPrintOut())
-  let tries = 0
+  let tries = 0 // infinite loop guard
   let next = null
+
   while (dungeon.emptyCount() > size && tries < (size*size*5)) {
     tries += 1
+
     // Step 3
-    //if (!next) { console.log('-->')}
     let origin = next || getRandomItem(allFeatures)
     let direction = getRandomItem(directions)
-    //console.log("    start: ["+origin.print+"] "+origin.x+","+origin.y)
 
-    if (!origin) { next = null; continue } // guard
+    if (!origin) { console.log(allFeatures); throw new Error("Unable to find origin") }
 
     // Step 4
-    let rtype = nextFeature()
-    if (!rtype) { console.log('notype'); next = null; continue }
+    let featureClass = nextFeature()
+    if (!featureClass) { console.log(features); throw new Error("Unable to generate feature"); }
 
-    // Step 5a
-    let look = origin.doors[direction]
-    //console.log('    door '+direction+': '+(look?look.print:'0'))
-    if (origin.doors[direction]) { next = null; continue }
+    // Step 5a - check if door already exists
+    let door = origin.doors[direction]
+    if (door) { next = null; continue }
 
-    // Step 5b
-    let adjacents = dungeon.getAdjacentTo(origin)
-    let adj = adjacents[direction]
-    //console.log('    look '+direction+': '+(testAdj?testAdj.print:'0'))
-    if (adj) {
-      // If possible, open a door between a room and something adjacent
+    // Step 5b - check if adjacent feature exists
+    let adjacentFeatures = dungeon.getAdjacentTo(origin)
+    let feature = adjacentFeatures[direction]
 
-      if( typeof(adj) === "string" ) { next = null; continue}
+    // Step 5c - If origin is a room, open a door x% of the time (50%)
+    if (feature) {
 
-      if( adj.print === 'C' ) { next = null; continue}
+      if( typeof(feature) === "string" ) { next = null; continue} // map returns `X` as edge sentinel
+      if( origin.print === 'C' ) { next = null; continue} // Don't add doors to corridors
+      if( Math.random() < 0.5 ) { next = null; continue} // Only add a door 50% of the time
 
-      if( Math.random() < 0.5 ) { next = null; continue}
-
-      origin.doors[direction] = adj
+      // Open Door between the two features
+      origin.doors[direction] = feature
       switch (direction) {
       case 'north':
-        adj.doors.south = origin
+        feature.doors.south = origin
         break;
       case 'south':
-        adj.doors.north = origin
+        feature.doors.north = origin
         break;
       case 'east':
-        adj.doors.west = origin
+        feature.doors.west = origin
         break;
       case 'west':
-        adj.doors.east = origin
+        feature.doors.east = origin
         break;
       }
 
-      next = origin
+      next = feature
       continue
     }
 
-    next = new rtype(origin.x, origin.y)
+    // Step 4 - create new feature
+    next = new featureClass(origin.x, origin.y)
     allFeatures.push(next)
-    if (next.print === 'R') {
-      next.roomNumber = rooms.length
-      rooms.push(next)
-    }
+    if (next.print === 'R') { next.roomNumber = rooms.length; rooms.push(next) } // keep track of room #'s separately
 
+    // Open Mutual Doors
     origin.doors[direction] = next
     switch (direction) {
     case 'north':
@@ -268,15 +290,13 @@ export const generateDungeon = ({size, features}) => {
       break;
     }
     dungeon.set(next)
-    //console.log("    adding: ["+next.print+"] "+next.x+","+next.y)
-    //console.log(dungeon.getPrintOut())
 
     // Step 6 (repeat)
   }
 
 
 
-  // Trim Single Corridors
+  // Turn Corridor Dead-Ends into Rooms
   dungeon.foreach( (value, x, y) => {
     if (value.imageKey !== 'c1') { return }
 
@@ -287,7 +307,7 @@ export const generateDungeon = ({size, features}) => {
     rooms.push(replacement)
   })
 
-  // Step 2 - back fill empty spots
+  // Step 2 - back fill empty spots with stone
   dungeon.foreach( (value, x, y) => {
     if (value && value.doorCount > 0) { return }
     let rock = new Feature()
